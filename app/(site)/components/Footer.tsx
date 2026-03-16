@@ -24,7 +24,7 @@ export default async function Footer() {
                         </ul>
                     </div>
                 </div>
-                <div className="flex justify-between items-center w-full h-25 m-1">
+                <div className="flex justify-between items-center w-full h-25 my-1">
                     <Logo />
                 </div>
             </div>

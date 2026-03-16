@@ -1,7 +1,22 @@
-import { getSlugType } from "@/sanity/sanity-utils";
+import { getPostDetail, getSlugType } from "@/sanity/sanity-utils";
 import PostListComponent from "../components/PostListComponent";
 import ServiceDetailComponent from "../components/ServiceDetailComponent";
 import notFound from "../[...not-found]/page";
+import { Metadata } from "next";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const post = await getPostDetail((await params).slug);
+  if (!post) return {};
+  
+  return {
+    title: `${post.title} | PapStack Magazine`,
+    description: `Read our latest article: ${post.title}`, 
+    openGraph: {
+      title: post.title,
+      images: [post.coverImage],
+    }
+  };
+}
 
 export default async function PostPage({ params }: {
   params: Promise<{ slug: string }>;

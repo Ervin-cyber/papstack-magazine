@@ -72,14 +72,14 @@ export default function Navbar({ navigationItems }: { navigationItems: Navigatio
             </span>
             {navigationItems.map((navigationItem: NavigationItem) => {
               return (
-                <span
-                  key={navigationItem._id}
-                  className="text-sm flex items-center mx-5 pb-3 pt-5 border-b border-gray-300 hover:scale-105 transition"
-                >
-                  <Link href={`/${navigationItem.slug.current}`} key={navigationItem._id} onClick={handleClose}>
+                <Link href={`/${navigationItem.slug.current}`} key={navigationItem._id} onClick={handleClose}>
+                  <span
+                    key={navigationItem._id}
+                    className="text-sm flex items-center mx-5 pb-3 pt-5 border-b border-gray-300 hover:scale-105 transition"
+                  >
                     <span className="">{navigationItem.name}</span>
-                  </Link>
-                </span>
+                  </span>
+                </Link>
               );
             })}
           </aside>
@@ -87,7 +87,7 @@ export default function Navbar({ navigationItems }: { navigationItems: Navigatio
       </div>
 
       {navigationItems.length > 0 &&
-        <div className="w-full mx-auto h-full m-1">
+        <div className="w-full mx-auto h-full my-1">
           <div style={{
             display: "flex",
             justifyContent: "center",

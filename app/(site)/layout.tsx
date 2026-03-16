@@ -53,8 +53,8 @@ const anton = Anton({
 
 
 export const metadata: Metadata = {
-  title: "FAT",
-  description: "Rollende Unterforderung · Mobilität für alle: Volkswagen gibt mit ID. · die Legende kehrt zurück in Form des allerersten elektrischen „Mini-Supersportwagens“.",
+  title: "PapStack Magazine",
+  description: "Rolling underachievement · Mobility for all: Volkswagen delivers with ID. · the legend returns in the form of the very first electric “mini supercar”.",
 };
 
 export default async function RootLayout({
@@ -66,12 +66,12 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${ubuntu_bold.variable} ${ubuntu_light.variable} ${baskervville.variable} ${anton.variable} antialiased min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} ${ubuntu_bold.variable} ${ubuntu_light.variable} ${baskervville.variable} ${anton.variable} antialiased min-h-screen overflow-x-hidden`}
       >
         <header>
           <Navbar navigationItems={categories} />
         </header>
-        <main className="flex-grow max-w-3xl px-3 md:mx-auto lg:mx-auto xl:mx-auto flex flex-col gap-4 mb-5">
+        <main className="flex-grow max-w-3xl px-3 md:mx-auto lg:mx-auto xl:mx-auto flex flex-col gap-4 mb-2">
           {children}
         </main>
         <Footer />

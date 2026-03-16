@@ -1,12 +1,14 @@
 {
-  "name": "fatmobilityreport",
+  "name": "papstack-magazine",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "postbuild": "sudo systemctl restart papstack-magazine.service",
+    "start": "next start -p 3001",
+    "lint": "next lint",
+    "export": "next export"
   },
   "dependencies": {
     "@sanity/client": "^6.28.4",
