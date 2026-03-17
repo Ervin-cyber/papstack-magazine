@@ -10,6 +10,7 @@ export type Post = {
     author: string;
     categories: Array<Category_ref>;
     coverImage: string;
+    aiSummary?: string;
     publishedAt: Date;
     body: PortableTextBlock[];
 }

@@ -52,7 +52,7 @@ export function ImageRoundedComponent({ image, width, height }: ImageComponentPr
   const url = urlFor(image)?.url();
   if (!url) return null;
   return (
-    <Image className="flex rounded-full"
+    <Image className="flex rounded-full object-cover aspect-square"
       src={url}
       alt={"Cover Image"}
       width={800}

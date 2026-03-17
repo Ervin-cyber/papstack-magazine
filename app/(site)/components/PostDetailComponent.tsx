@@ -14,7 +14,8 @@ export default async function PostDetailComponent({ params }: { params: Promise<
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.title,
-    image: post.coverImage, 
+    description: post.aiSummary || post.title,
+    image: post.coverImage ? [post.coverImage] : [],
     datePublished: post.publishedAt,
     author: [{
       '@type': 'Person',
@@ -23,11 +24,15 @@ export default async function PostDetailComponent({ params }: { params: Promise<
     }],
     publisher: {
       '@type': 'Organization',
-      name: 'PapStack Magazine',
+      name: 'Papstack Magazine',
       logo: {
         '@type': 'ImageObject',
         url: `${baseUrl}/images/logo.png`
       }
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${baseUrl}/post/${post.slug.current}`
     }
   };
 
@@ -40,10 +45,18 @@ export default async function PostDetailComponent({ params }: { params: Promise<
       />
 
       <h1 className="font-baskervville text-5xl md:text-7xl text-black mb-8">{post.title}</h1>
+
+      {post.aiSummary && (
+        <div className="bg-gray-100 p-6 border-l-4 border-black mb-8 rounded-r-md">
+          <h3 className="font-ubuntu-bold text-sm uppercase tracking-widest text-gray-500 mb-2">✨ AI Quick Summary</h3>
+          <p className="font-geist-sans text-gray-800 leading-relaxed">{post.aiSummary}</p>
+        </div>
+      )}
+
       <div className="prose">
         <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
         <PortableText value={post.body} components={PortableTextComponents} />
-        <h1 className="text-lg text-center py-4 font-semibold text-gray-500">...</h1>
+
         <AuthorPreviewComponent slug={author.slug} _id={author._id} coverImage={author.coverImage} name={author.name} description={author.description} />
       </div>
     </div>

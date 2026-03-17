@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 export const postType = defineType({//document schema type
   name: 'post',
@@ -13,13 +13,13 @@ export const postType = defineType({//document schema type
     defineField({
       name: 'slug',
       type: 'slug',
-      options: {source: 'title'},
+      options: { source: 'title' },
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'author',
       type: 'reference',
-      to: {type: 'author'},
+      to: { type: 'author' },
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -27,14 +27,21 @@ export const postType = defineType({//document schema type
       type: 'array',
       of: [
         {
-        type: 'reference',
-        to: {type: 'category'}
-      }],
+          type: 'reference',
+          to: { type: 'category' }
+        }],
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'coverImage',
       type: 'image',
+    }),
+    defineField({
+      name: 'aiSummary',
+      title: 'AI Summary (GEO)',
+      description: 'A short, to the point summary for AI search engines (ChatGPT, Perplexity) and Google Snippets.',
+      type: 'text',
+      rows: 3,
     }),
     defineField({
       name: 'publishedAt',
@@ -45,15 +52,17 @@ export const postType = defineType({//document schema type
     defineField({
       name: 'body',
       type: 'array',
-      of: [        
+      of: [
         { type: "block" }, // Block type for regular text (paragraphs, headings, etc.)
-        { type: "image", fields: [{
-          name: "caption",
-          title: "Caption",
-          type: "string",
-          description: "Description of the image",
-        }] }, // Image type for inserting images
-        ],
+        {
+          type: "image", fields: [{
+            name: "caption",
+            title: "Caption",
+            type: "string",
+            description: "Description of the image",
+          }]
+        }, // Image type for inserting images
+      ],
     }),
   ],
 })

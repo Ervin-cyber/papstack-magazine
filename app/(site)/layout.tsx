@@ -53,8 +53,15 @@ const anton = Anton({
 
 
 export const metadata: Metadata = {
-  title: "PapStack Magazine",
-  description: "Rolling underachievement · Mobility for all: Volkswagen delivers with ID. · the legend returns in the form of the very first electric “mini supercar”.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://magazine.papstack.net'),
+  title: {
+    template: '%s | PapStack Magazine',
+    default: 'PapStack Magazine | Premium Automotive and Mobility Portal',
+  },
+  description: "Exclusive mobility magazine, tests and innovations in the interpretation of PapStack Magazine.",
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+  },
 };
 
 export default async function RootLayout({
